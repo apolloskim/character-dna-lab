@@ -5,109 +5,64 @@ import { Pen } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 
-const BETA_SIGNUP_FORM = "https://docs.google.com/forms/d/e/1FAIpQLSeDChw9n6ULVsUp0ZmUHOyGolF7PWGjp5FpiGwl7IaYTH0b8w/viewform?usp=sf_link";
-
-export default function LandingPage() {
-  const [email, setEmail] = useState('')
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    try {
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-        method: 'POST',
-        body: JSON.stringify({ email }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      if (response.ok) {
-        setEmail('')
-        alert('Thanks for joining our private beta! We\'ll be in touch soon.')
-      } else {
-        throw new Error('Form submission failed')
-      }
-    } catch (error) {
-      console.error('Error:', error)
-      alert('There was an error submitting the form. Please try again.')
-    }
-  }
-
+export default function Home() {
   return (
-    <div className={cn("min-h-screen bg-amber-50 text-amber-900 flex flex-col")}>
-      <header className="p-6 flex items-center justify-between">
-        <div className="flex items-center space-x-2">
-          <Pen className="h-8 w-8 text-amber-600" />
-          <span className="text-xl font-bold">Character DNA Lab</span>
+    <main className="flex min-h-screen flex-col items-center bg-[#FFFAF4] text-[#2C1810]">
+      {/* Logo Section */}
+      <div className="w-full max-w-5xl px-6 pt-16 sm:pt-24">
+        <div className="flex justify-center">
+          <span className="text-[#FF7F50]">🖋️ Character DNA Lab</span>
         </div>
-      </header>
+      </div>
 
-      <main className="flex-grow container mx-auto px-4 py-8">
-        <section className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">
-            Character DNA Lab: AI-Powered Character Development for Writers and Creators
-          </h1>
-          <p className="text-xl mb-8">
-            Turn character ideas into deep, consistent personalities using advanced AI analysis
-          </p>
-          <ul className="space-y-4 mb-8">
-            {[
-              "Analyze character traits, motivations, and potential arcs in seconds",
-              "Generate consistent character responses to any scenario",
-              "Identify plot opportunities and character development paths"
-            ].map((benefit, index) => (
-              <li key={index} className="flex items-center justify-center">
-                <svg className="h-6 w-6 text-amber-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                {benefit}
-              </li>
-            ))}
-          </ul>
-        </section>
+      {/* Hero Section */}
+      <div className="mx-auto max-w-4xl px-6 py-12 text-center">
+        <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl text-[#2C1810]">
+          Character DNA Lab: AI-Powered Character Development for Writers and Creators
+        </h1>
+        <p className="mb-8 text-lg text-[#5C4033]">
+          Turn character ideas into deep, consistent personalities using advanced AI analysis
+        </p>
 
-        <section className="max-w-md mx-auto mb-12">
-          <h2 className="text-2xl font-bold mb-4 text-center">Join the Private Beta</h2>
-          <div className="mt-8 flex justify-center w-full">
-            <Link
-              href={BETA_SIGNUP_FORM}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-            >
-              Join Private Beta
-            </Link>
+        {/* Features List - Updated alignment */}
+        <div className="mb-12 flex flex-col items-center space-y-4 text-center max-w-2xl mx-auto">
+          <div className="flex items-center gap-2 justify-center w-full">
+            <span className="text-[#FF7F50]">✓</span>
+            <span className="text-[#5C4033]">Analyze character traits, motivations, and potential arcs in seconds</span>
           </div>
-        </section>
+          <div className="flex items-center gap-2 justify-center w-full">
+            <span className="text-[#FF7F50]">✓</span>
+            <span className="text-[#5C4033]">Generate consistent character responses to any scenario</span>
+          </div>
+          <div className="flex items-center gap-2 justify-center w-full">
+            <span className="text-[#FF7F50]">✓</span>
+            <span className="text-[#5C4033]">Identify plot opportunities and character development paths</span>
+          </div>
+        </div>
 
-        <section className="text-center mb-12">
-          <p className="text-lg font-semibold">
-            Built by engineers and writers for professional storytellers
-          </p>
-        </section>
+        {/* CTA Section */}
+        <div className="mb-16">
+          <h2 className="mb-6 text-2xl font-semibold text-[#2C1810]">Join the Private Beta</h2>
+          <Link
+            href="https://docs.google.com/forms/d/e/1FAIpQLSeDChw9n6ULVsUp0ZmUHOyGolF7PWGjp5FpiGwl7IaYTH0b8w/viewform?usp=sf_link"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block rounded-lg bg-[#FF7F50] px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-[#FF9F70] transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF7F50]"
+          >
+            Join Private Beta
+          </Link>
+        </div>
 
-        <section className="bg-amber-100 p-6 rounded-lg">
-          <h2 className="text-2xl font-bold mb-4">Coming Soon:</h2>
-          <ul className="space-y-2">
-            {[
-              "Character consistency analysis",
-              "Personality mapping",
-              "Scene response prediction",
-              "Character growth tracking"
-            ].map((feature, index) => (
-              <li key={index} className="flex items-center">
-                <svg className="h-5 w-5 text-amber-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
-                {feature}
-              </li>
-            ))}
-          </ul>
-        </section>
-      </main>
+        {/* Footer Text */}
+        <p className="text-sm text-[#8B4513]">
+          Built by engineers and writers for professional storytellers
+        </p>
+      </div>
 
-      <footer className="mt-auto p-6 text-center text-sm text-amber-700">
-        © {new Date().getFullYear()} Character DNA Lab. All rights reserved.
+      {/* Footer */}
+      <footer className="w-full py-6 text-center text-sm text-[#8B4513]">
+        © 2024 Character DNA Lab. All rights reserved.
       </footer>
-    </div>
-  )
+    </main>
+  );
 }
