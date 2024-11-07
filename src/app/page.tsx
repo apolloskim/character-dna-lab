@@ -1,8 +1,5 @@
 'use client'
 
-import { useState } from 'react'
-import { Pen } from 'lucide-react'
-import { cn } from '@/lib/utils'
 import Link from 'next/link'
 
 export default function Home() {
